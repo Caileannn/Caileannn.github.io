@@ -1,0 +1,43 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.body{
+
+  background: #fbfbfb;
+
+}
+
+.wrapper{
+
+margin: 0 auto;
+width: 90%;
+display: grid;
+
+}
+
+.thing{
+
+  background: #58d5f6;
+  color: white;
+  padding: 10px;
+
+}
+
+.thing:nth-child(even){
+  background: #236fc8;
+}
+
+.uInput{
+
+  text-align: center;
+
+}
+
+.item{
+
+  text-align: center;
+
+}

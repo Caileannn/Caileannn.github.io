@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unsplash API in Javascript</title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <div class="uInput" >
+
+      <input type="text" class="userString" id="userString" name="string"><br><br>
+
+      <input type="submit" class="userInputButton" value="Submit">
+    </div>
+
+  </body>
+
+  <script>
+
+    const userInputButton = document.querySelector('.userInputButton');
+
+    const lengthOfSentence = 5;
+    var text = "";
+    var i = 0;
+    var textArray;
+    var tempImg;
+    var item;
+
+    userInputButton.addEventListener('click', async () => {
+    //  location.reload();
+      var text = document.querySelector("#userString").value;
+      textArray = text.split(" ");
+      let item = document.createElement('div');
+
+      for(i = 0; i < textArray.length; i++){
+        console.log(textArray[i] + " | ");
+        tempImg = textArray[i];
+        let item = document.createElement('div');
+        let randomImage = await getNewImage(tempImg);
+
+        item.classList.add('item');
+        item.innerHTML = `<img class="newImg" src="${randomImage}" alt="beach image" width="400" height="400" />`;
+        document.body.appendChild(item);
+    }
+
+    });
+
+
+
+
+    async function getNewImage(imgLink) {
+      var test = 0;
+      let randomNumber = Math.floor(Math.random() * 10);
+      return fetch(`https://api.unsplash.com/search/photos?query=` + imgLink + '&client_id=CoxSNrxjnryfNSfIsEiCb_32VWfPsP2qXbkaVSsoWPw')
+        .then((response) => response.json())
+        .then((data) => {
+
+
+          let allImages = data.results[randomNumber];
+          var imgW = allImages.width;
+          var imgH = allImages.height;
+
+
+          return allImages.urls.regular;
+
+
+
+
+
+        });
+
+    }
+  </script>
+
+</html>
