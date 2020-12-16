@@ -2,75 +2,251 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unsplash API in Javascript</title>
+
+    <title>digital runes</title>
+
+
     <link href="style.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
-    <div class="uInput" >
 
-      <input type="text" class="userString" id="userString" name="string"><br><br>
 
-      <input type="submit" class="userInputButton" value="Submit">
+    <div class="wrapper" id="wrapper">
+
+      <div class="leftContainer" id="leftContainer">
+
+      </div>
+
+      <div class="middleContainer" id="middleContainer">
+
+
+        <div class="uInput">
+          <div class="textFormat">
+            <input type="text"  class="userString" id="userString" name="string" autocomplete="off" maxlength="20" autofocus>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="rightContainer" id="rightContainer">
+
+      </div>
+
+
+
+
     </div>
-
   </body>
-
   <script>
 
-    const userInputButton = document.querySelector('.userInputButton');
 
-    const lengthOfSentence = 5;
+
+
+
     var text = "";
-    var i = 0;
     var textArray;
     var tempImg;
-    var item;
+    var row;
+    var canvas;
 
-    userInputButton.addEventListener('click', async () => {
-    //  location.reload();
+    var widthRow;
+    var ximg;
+    var yimg;
+    var cRow;
+    var base64String;
+    var image;
+    var count = 0;
+    var xlocation = 1;
+    var para64;
+    var binary;
+    var binarAr = "";
+
+
+    var enterClick = document.getElementById("userString");
+
+    row = document.createElement('div');
+    row.setAttribute("class", "row");
+    row.setAttribute("id", "row");
+
+    window.canvas = document.createElement("canvas");
+    const ctx = canvas.getContext('2d');
+
+    widthRow = document.getElementById('middleContainer').offsetWidth;
+    canvas.width = widthRow;
+    canvas.height = 150;
+
+    var a = document.createElement('a');
+    a.setAttribute("href", "2.html");
+    a.setAttribute("id", "lnk");
+
+
+    para64 = document.createElement("p");
+    binary = document.createElement("p");
+    para64.setAttribute("class", "para64");
+    para64.setAttribute("id", "para64");
+
+    binary.setAttribute("class", "bin64");
+    binary.setAttribute("id", "bin64");
+
+
+
+    document.getElementById('middleContainer').appendChild(row);
+    document.getElementById('row').appendChild(a);
+
+    document.getElementById('row').appendChild(window.para64);
+    document.getElementById('row').appendChild(window.binary);
+
+
+    enterClick.addEventListener("keyup", async () => {
+
+
+
+    if ( event.keyCode === 13){
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      document.getElementById('lnk').innerHTML = "";
+      document.getElementById('para64').innerHTML = "";
+      document.getElementById('bin64').innerHTML = "";
+
+
+
+      xlocation = 0;
+      var image = new Image();
+      count = 0;
       var text = document.querySelector("#userString").value;
       textArray = text.split(" ");
-      let item = document.createElement('div');
+
 
       for(i = 0; i < textArray.length; i++){
-        console.log(textArray[i] + " | ");
+
         tempImg = textArray[i];
-        let item = document.createElement('div');
+
+
+
+
+
         let randomImage = await getNewImage(tempImg);
 
-        item.classList.add('item');
-        item.innerHTML = `<img class="newImg" src="${randomImage}" alt="beach image" width="400" height="400" />`;
-        document.body.appendChild(item);
+        let item = document.createElement('img');
+
+
+
+
+        item.onload = function() {
+
+          window.ximg = ((window.xlocation + 1) * 110);
+
+
+
+          ctx.drawImage(item, ximg, 0, 100, 100);
+          (window.xlocation)++;
+          window.base64String = canvas.toDataURL("image/png");
+
+          let text64 = document.createTextNode(window.base64String);
+          console.log(window.base64String);
+          window.para64.appendChild(text64);
+
+
+          let binary64 = binEncode(window.base64String);
+
+          for(var x1 = 0; x1 < 1000; x1++){
+            window.binary.appendChild(document.createTextNode(binary64[x1]));
+          }
+
+
+
+
+
+      }
+
+
+
+          item.setAttribute("class", "newImg");
+          item.setAttribute("src", randomImage);
+          item.setAttribute("crossOrigin", "anonymous");
+          document.getElementById('lnk').appendChild(item);
+
+
+        document.getElementById('userString').value = "";
+
     }
 
-    });
+
+    //document.getElementById('row').appendChild(window.para64);
+    //document.getElementById('row').appendChild(window.binary);
+
+
+
+
+
+
+
+
+
+
+  }
+
+
+
+
+});
+
 
 
 
 
     async function getNewImage(imgLink) {
-      var test = 0;
-      let randomNumber = Math.floor(Math.random() * 10);
+      let randomNumber = Math.floor(Math.random() * 3);
       return fetch(`https://api.unsplash.com/search/photos?query=` + imgLink + '&client_id=CoxSNrxjnryfNSfIsEiCb_32VWfPsP2qXbkaVSsoWPw')
         .then((response) => response.json())
         .then((data) => {
 
 
           let allImages = data.results[randomNumber];
-          var imgW = allImages.width;
-          var imgH = allImages.height;
+          if(!allImages){console.log("woops");}else{
+
 
 
           return allImages.urls.regular;
 
-
+        }
 
 
 
         });
 
     }
-  </script>
 
-</html>
+    function myFunction() {
+      rowNumber++;
+    }
+
+    function binEncode(data) {
+    var binArray = []
+    var datEncode = "";
+
+    for (p=0; p < data.length; p++) {
+        binArray.push(data[p].charCodeAt(0).toString(2));
+    }
+    for (j=0; j < binArray.length; j++) {
+        var pad = padding_left(binArray[j], '0', 8);
+        datEncode += pad + ' ';
+    }
+    function padding_left(s, c, n) { if (! s || ! c || s.length >= n) {
+        return s;
+    }
+    var max = (n - s.length)/c.length;
+    for (var p = 0; p < max; p++) {
+        s = c + s; } return s;
+    }
+    return binArray;
+}
+
+
+
+
+
+
+
+  </script>
+  </html>

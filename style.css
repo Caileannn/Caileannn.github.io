@@ -1,43 +1,272 @@
 *{
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+
+}
+.title{
+
+  font-family: Consolas;
+}
+.html{
+
+
+
+
 }
 
 .body{
 
-  background: #fbfbfb;
+    background-color: #ffffff;
+    //margin: 0px;
+    //padding-top:0px;
+
 
 }
 
 .wrapper{
 
-margin: 0 auto;
-width: 90%;
-display: grid;
+  height:100vh;
+  width:100vw;
+  margin-top: 0px;
+  overflow: hidden;
+
+ background-image:url("img/glitch.gif");
+ background-size: cover;
+ filter: grayscale(100%);
+}
+
+.wrapper2{
+
+  height:100vh;
+  width:100vw;
+  margin-top: 0px;
+  overflow: hidden;
+
+ background-image:url("img/binary.gif");
+ background-size: auto;
 
 }
 
-.thing{
+.leftContainer{
 
-  background: #58d5f6;
-  color: white;
-  padding: 10px;
+  height:100vh;
+  width:15vw;
+  margin-right: 0;
+
+  border-collapse: collapse;
+  float: left;
+
+
 
 }
 
-.thing:nth-child(even){
-  background: #236fc8;
+.rightContainer{
+
+  height:100vh;
+  width:20vw;
+  float:right;
+
+
+
+
+
+  border-collapse: collapse;
+
+
+
+}
+
+.middleContainer{
+
+  height:100vh;
+  width:70vw;
+  margin-top: 0px;
+
+
+  //background-color: #000000;
+  border-collapse: collapse;
+  background-image: url("img/stonebg.png");
+  text-align: center;
+  display: inline-block;
+  float:left;
+  //opacity: 90%;
+    //box-shadow: 0 0 15px 10px #141414;
+    background-size: cover;
+
 }
 
 .uInput{
 
+  //text-align: center;
+  width: 20vw;
+  background: #000000;
+  color: #000000;
+
+  //margin-right: 40vw;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  //align-items: center;
+  display:inline-block;
+  margin-top: 10vh;
+  margin-bottom: 20px;
+  margin-left: 200px;
+}
+
+.textFormat input{
+  height: 100%;
+  width: 100%;
+  border: none;
+
+  background: #000000;
+  color: white;
+  font-size: 24px;
+  font: 1.3rem Inconsolata, Consolas;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
   text-align: center;
+  filter: blur(0.6px);
+  outline:none;
+
 
 }
 
-.item{
+.textFormat label{
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  color: black;
+  pointer-events: none;
+
+}
+
+.row {
+  display:inline-block;
+
+
+
+
+  min-width: 60vw;
+  max-height: 100px;
+  max-width: 60vw;
 
   text-align: center;
+
+ padding-top: 25px;
+ padding-bottom: : 25px;
+
+
+
+
+}
+
+.newImg{
+
+  max-height: 100px;
+  max-width: 100px;
+
+
+  filter: grayscale(100%);
+  padding: 10px;
+  display:inline-block;
+  padding-top: 5vh;
+
+
+
+
+}
+
+.dollar{
+
+  color: white;
+  font-size: 24px;
+  font: 1.3rem Inconsolata, Consolas;
+  filter: blur(0.6px);
+  float: left;
+  margin-top: 10vh;
+  margin-bottom: 20px;
+  margin-left: 28vw;
+  margin-right: 0px;
+  position: absolute;
+
+
+}
+
+.text64{
+  max-width: 60vw;
+  color:white;
+  padding-left: 20px;
+  padding-right: 20px;
+  font: 1.3rem Inconsolata, Consolas;
+  filter: blur(0.6px);
+  word-wrap:break-word;
+  font-size: 2px;
+
+
+
+}
+
+.para64{
+  max-width: 60vw;
+  color:white;
+  padding-left: 20px;
+  padding-right: 20px;
+  font: 1.3rem Inconsolata, Consolas;
+  filter: blur(0.6px);
+  word-wrap:break-word;
+  font-size: 2px;
+  padding-top: 8px;
+
+
+}
+
+.bin64{
+  max-width: 60vw;
+  color:white;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  font: 1.3rem Inconsolata, Consolas;
+  filter: blur(0.6px);
+  word-wrap:break-word;
+  font-size: 10px;
+  margin-bottom: 20vh;
+
+
+
+}
+
+.canvas{
+
+    padding-top: 500px;
+}
+
+.rsText{
+  width: 1088px;
+  height: 678px;
+  background-image: url("img/rsText.jpg");
+  background-size: cover;
+  margin-top: 15vh;
+  margin-left: 30vw;
+
+
+
+
+}
+
+.page2{
+  background-image: url("img/hier.gif");
+  width: 1200px;
+  height: 250px;
+  border: 0;
+  background-size: cover;
+  position: absolute;
+  transform:rotate(90deg);
+  margin-left: 900px;
+  margin-top: 400px;
+  filter:grayscale(0%);
+
+
+
+
 
 }
